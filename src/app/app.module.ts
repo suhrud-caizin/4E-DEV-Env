@@ -14,6 +14,8 @@ import { httpInterceptorProviders } from './my-interceptor.interceptor';
 import { PieComponent } from './pie/pie.component';
 import { OrgtreeComponent } from './orgtree/orgtree.component';
 import { NgChartsModule } from 'ng2-charts';
+import { AdminComponent } from './admin/admin.component';
+import { UnauthaccessComponent } from './unauthaccess/unauthaccess.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { NgChartsModule } from 'ng2-charts';
     HomeComponent,
     NavBarComponent,
     PieComponent,
-    OrgtreeComponent
+    OrgtreeComponent,
+    AdminComponent,
+    UnauthaccessComponent
   ],
   imports: [
     BrowserModule,

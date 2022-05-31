@@ -17,5 +17,8 @@ export class NavBarComponent implements OnInit {
       this.sc.logout();
       this.router.navigate(['/']);
   }
+  getUserName(){
+    return this.sc.getUserName();
+  }
 
 }

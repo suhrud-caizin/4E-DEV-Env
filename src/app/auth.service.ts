@@ -5,13 +5,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-   AUTH_API = 'https://reqres.in/api/login';
+   AUTH_API = 'https://dev-api.tqmi.io/user-management/login';
    httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
   constructor(private http:HttpClient) { }
   login(UserName:string,Password:string):Observable<any>{
-      return this.http.post(this.AUTH_API,{"email":UserName,"password":Password},this.httpOptions)
+      return this.http.post(this.AUTH_API,{"username":UserName,"password":Password},this.httpOptions)
   }
   
   getAll(){

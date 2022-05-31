@@ -29,7 +29,6 @@ status:'success'|'fail'='success';
    
   });
   
-
   onSubmit(){
     console.log("submitted!");
     console.log(this.profileForm.value.UserName)
@@ -37,7 +36,7 @@ status:'success'|'fail'='success';
     this.as.login(this.profileForm.value.UserName,this.profileForm.value.Password).subscribe(
       (data)=>{
         console.log(data);
-        this.sc.saveToken(data.token);
+        this.sc.saveToken(data.response);
       this.sc.saveUser(data)
       this.router.navigate(['/display']);
       },
@@ -45,6 +44,7 @@ status:'success'|'fail'='success';
         this.status='fail';
       }
     )
+    
    
 
     

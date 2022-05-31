@@ -9,7 +9,8 @@ export class TokenStorageService {
   constructor() { }
   getToken(): string | null {
     let tmp = localStorage.getItem(this.TOKEN_KEY);
-    if (tmp ) {         //&& !this.isTokenExpired(tmp)
+    if (tmp&& !this.isTokenExpired(tmp)) {         //&& !this.isTokenExpired(tmp)
+      // console.log('is expired:'+this.isTokenExpired(tmp));
       return tmp
     }
     return null;
@@ -29,6 +30,13 @@ export class TokenStorageService {
   }
   isTokenExpired(token: string) {
     const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+    
     return (Math.floor((new Date).getTime() / 1000)) >= expiry;
+  }
+  isAdmin(){
+    return JSON.parse(atob(localStorage.getItem(this.TOKEN_KEY)!.split('.')[1])).isAdmin
+  }
+  getUserName(){
+    return JSON.parse(atob(localStorage.getItem(this.TOKEN_KEY)!.split('.')[1])).firstname
   }
 }

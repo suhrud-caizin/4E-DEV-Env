@@ -13,6 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { httpInterceptorProviders } from './my-interceptor.interceptor';
 import { PieComponent } from './pie/pie.component';
 import { OrgtreeComponent } from './orgtree/orgtree.component';
+import { NgChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,7 @@ import { OrgtreeComponent } from './orgtree/orgtree.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, ReactiveFormsModule,HttpClientModule
+    AppRoutingModule, ReactiveFormsModule,HttpClientModule,NgChartsModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

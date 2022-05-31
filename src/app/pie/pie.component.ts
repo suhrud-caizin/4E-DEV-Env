@@ -1,12 +1,14 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-
+import { ChartType } from 'chart.js';
+import * as ng2Charts from 'ng2-charts';
+ 
 @Component({
   selector: 'app-pie',
   templateUrl: './pie.component.html',
   styleUrls: ['./pie.component.css']
 })
 export class PieComponent implements OnInit {
-  @ViewChild('canvas')
+ /* @ViewChild('canvas')
   canvas!: ElementRef;
    angles = [Math.PI,0.5*Math.PI,0.5*Math.PI];
    colors = ['#4CAF50', '#00BCD4', '#E91E63', '#FFC107', '#9E9E9E', '#CDDC39'];
@@ -54,5 +56,38 @@ draw()
       ctx.fill();
     }
   }
+*/
 
+pieChartOptions = {
+  responsive: true
+}
+
+pieChartLabels =  ['JAN', 'FEB','MAR','APR','MAY','JUN'];
+
+// CHART COLOR.
+pieChartColor:any = [
+  {
+      backgroundColor: ['rgba(30, 169, 224, 0.8)',
+      'rgba(255,165,0,0.9)',
+      'rgba(139, 136, 136, 0.9)',
+      'rgba(255, 161, 181, 0.9)',
+      'rgba(255, 102, 0, 0.9)'
+      ]
+  }
+]
+
+pieChartData:any = [
+  { 
+      data: [50,40,50,60,90,90]        //Math.PI/3,Math.PI/3,Math.PI/3,Math.PI/3,Math.PI/3,Math.PI/3
+  }
+];
+
+ngOnInit() {
+}
+/**
+ *
+ */
+constructor() {
+ 
+}
 }

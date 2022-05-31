@@ -1,5 +1,5 @@
-
-
+<!-- 
+first code
 <div class="col-sm-5 border">
 
     
@@ -9,4 +9,14 @@
     
 </div>
   
-
+ -->
+ <div class="col-sm-5 border">
+    <canvas width="600" height="600"
+        baseChart
+        [type]="'pie'"
+        [datasets]="pieChartData"
+        [labels]="pieChartLabels"
+        [options]="pieChartOptions"
+        [legend]="true">
+    </canvas>
+  </div>

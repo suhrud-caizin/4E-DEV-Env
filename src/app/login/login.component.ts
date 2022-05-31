@@ -5,6 +5,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Route, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { TokenStorageService } from '../token-storage.service';
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,8 +24,8 @@ status:'success'|'fail'='success';
       }
   }
   profileForm = this.fb.group({
-    UserName: ['',Validators.required],   //Validators.minLength(4)
-    Password: ['',Validators.required],    //Validators.minLength(4)
+    UserName: ['',[Validators.email,Validators.required,Validators.minLength(4)]],   //Validators.minLength(4)
+    Password: ['',[Validators.required,Validators.minLength(4)]],    //Validators.minLength(4)
    
   });
   

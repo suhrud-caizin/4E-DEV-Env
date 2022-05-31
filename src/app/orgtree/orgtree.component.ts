@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TokenStorageService } from '../token-storage.service';
 
 @Component({
   selector: 'app-orgtree',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrgtreeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sc:TokenStorageService,private router:Router) { }
 
   ngOnInit(): void {
-  }
+    if(!this.sc.getToken()){
+      this.router.navigate(['/']);
+    }
+}
 
 }

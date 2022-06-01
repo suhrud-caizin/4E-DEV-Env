@@ -18,16 +18,22 @@ capfreq:any[]=[];
 reviewFreq:any[]=[];
 dept:any[]=[];
 perspectives:any[]=[];
+type:any[]=[];
+category:any[]=[];
 msg='';
+FY:any;
   ngOnInit(): void {
 
       this.ks.getCaptureFreq().subscribe(({response})=>this.capfreq=response);   //this.capfreq=data
       this.ks.getDepts().subscribe(({response})=>this.dept=response);
       this.ks.getReviewFreq().subscribe(({response})=>this.reviewFreq=response);
       this.ks.getPerspectives().subscribe(({response})=>this.perspectives=response);
-    setTimeout(() => {
-      console.log(this.capfreq);
-      console.log(this.perspectives)
+     this.ks.getTypes().subscribe(({response})=>this.type=response);
+     this.ks.getCategory().subscribe(({response})=>this.category=response);
+     this.ks.getFY().subscribe(({response})=>this.FY=response);
+      setTimeout(() => {
+      console.log(this.FY);
+      // console.log(this.perspectives)
     }, 1000);
  
 }
@@ -70,7 +76,7 @@ kpiForm = this.fb.group({
     owners: {
         individuals: [
             {
-                employeeId: "vikas.raut",
+                employeeId: "suhrud.mhatre",
                 isPrimary: true
             }
         ]
@@ -82,7 +88,9 @@ kpiForm = this.fb.group({
     financialYearStart: 1648751400000,
     financialYearEnd: 1680287399000,
     dataAggregationFrequency: "62833d7b412ac9eebe3a3c17",
-    dataAggregationMethod: "SUM"
+    dataAggregationMethod: "SUM",
+    
+  
 });
 onSubmit(){
   console.log(this.kpiForm.value)
@@ -91,6 +99,16 @@ onSubmit(){
     this.msg=''
   }, 2000);
 }
+  changeHandler($event: any) {
+    console.log($event.target.value);
+    let tmp = this.capfreq.find(elem => elem._id == $event.target.value);
+    console.log(tmp.order)
+    this.reviewFreq = this.reviewFreq.filter(elem => elem.order > tmp.order)
+    console.log(this.reviewFreq)
+  }
+  // setStartUnix(){
+  //  this.kpiForm.
+  // }
 get title() { return this.kpiForm.get('title'); }
 get departmentId() { return this.kpiForm.get('departmentId'); }
 get dataCaptureFrequency() { return this.kpiForm.get('dataCaptureFrequency'); }

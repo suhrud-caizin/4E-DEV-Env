@@ -4,6 +4,7 @@ import { AdminGuard } from './admin.guard';
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './auth.guard';
 import { CreateComponent } from './create/create.component';
+import { DetailsComponent } from './details/details.component';
 import { DisplayComponent } from './display/display.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path:'orgtree',component:OrgtreeComponent,canActivate: [AuthGuard] },
   {path:'admin',component:AdminComponent,canActivate:[AuthGuard,AdminGuard]},
   {path:'unauth',component:UnauthaccessComponent},
+  {path:'details/:id',component:DetailsComponent,canActivate: [AuthGuard]},
   
   { path: '',component:LoginComponent },
  

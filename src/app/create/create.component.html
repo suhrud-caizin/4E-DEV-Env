@@ -62,9 +62,9 @@ role="alert"
      
                         <label for="cars">Data Capture Frequency:</label>
                         
-                        <select name="cars" id="cars" formControlName="dataCaptureFrequency">
+                        <select name="cars" id="cars" formControlName="dataCaptureFrequency" (change)="changeHandler($event)" >
                             <option [value]=''>select Freq</option>
-                            <option [value]="f._id" *ngFor="let f of capfreq">{{f.value}}</option>
+                            <option [value]="f._id" *ngFor="let f of capfreq" >{{f.value}}</option>
                             
                          </select>
                      <!-- </div> -->
@@ -97,6 +97,55 @@ role="alert"
              <!-- </div> -->
         </div>
 
+
+
+
+
+
+        <div class="row">
+            <!-- <div class="form-group"> -->
+
+                <label for="cars">select FY</label>
+                
+                <select name="cars" id="cars" formControlName="financialYearEnd" >
+                    <option [value]=''>select FY</option>
+                    <option [value]="f.endUnix" *ngFor="let f of FY">FY-{{f.startUnix|date: 'yyyy'}}-{{f.endUnix|date: 'yyyy'}}</option>
+                    
+                 </select>
+             <!-- </div> -->
+        </div>
+       
+
+
+
+
+
+
+
+        <div class="row">
+            <!-- <div class="form-group"> -->
+
+                <label for="cars">Type</label>
+                
+                <select name="cars" id="cars" formControlName="type">
+                    <option [value]=''>select type</option>
+                    <option [value]="p._id" *ngFor="let p of perspectives">{{p.perspective}}</option>
+                    
+                 </select>
+             <!-- </div> -->
+        </div>
+        <div class="row">
+            <!-- <div class="form-group"> -->
+
+                <label for="cars">Category</label>
+                
+                <select name="cars" id="cars" formControlName="category">
+                    <option [value]=''>select Freq</option>
+                    <option [value]="p._id" *ngFor="let p of perspectives">{{p.perspective}}</option>
+                    
+                 </select>
+             <!-- </div> -->
+        </div>
 
 
             <div class="row">

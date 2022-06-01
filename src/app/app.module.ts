@@ -16,6 +16,7 @@ import { OrgtreeComponent } from './orgtree/orgtree.component';
 import { NgChartsModule } from 'ng2-charts';
 import { AdminComponent } from './admin/admin.component';
 import { UnauthaccessComponent } from './unauthaccess/unauthaccess.component';
+import { DetailsComponent } from './details/details.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { UnauthaccessComponent } from './unauthaccess/unauthaccess.component';
     PieComponent,
     OrgtreeComponent,
     AdminComponent,
-    UnauthaccessComponent
+    UnauthaccessComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,

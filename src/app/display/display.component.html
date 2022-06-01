@@ -1,3 +1,17 @@
 <app-nav-bar></app-nav-bar>
 
 <p>display works!</p>
+
+
+
+<div class="jumbotron" *ngFor="let k of kpis">
+    <h1 class="display-4">{{k.title}}</h1>
+    <p class="lead">{{k.ownerEmployeeId}}</p>
+    <!-- <hr class="my-4"> -->
+    <p>{{k.departmentName}}</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg"   [routerLink]="['/details', k._id]" role="button">Details</a>
+  
+    </p>
+    <hr>
+  </div>

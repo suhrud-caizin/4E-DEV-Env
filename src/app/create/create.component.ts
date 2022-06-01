@@ -52,7 +52,7 @@ kpiForm = this.fb.group({
     ytdCalculation: "SUM",
     weightage: 1,
     captureData: [
-        {
+        [{
             target: 0,
             lower: 0,
             upper: 0,
@@ -62,7 +62,7 @@ kpiForm = this.fb.group({
             disabled: false,
             upperValueType: "ABSOLUTE",
             lowerValueType: "ABSOLUTE"
-        }
+        }]
     ],
     unitOfMeasurement: "606573e173d7e41e2e59a4ab",
     goalFormula: null,

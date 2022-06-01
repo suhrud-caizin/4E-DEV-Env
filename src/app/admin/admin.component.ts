@@ -12,9 +12,7 @@ export class AdminComponent implements OnInit {
   constructor(private sc:TokenStorageService,private router:Router) { }
 
   ngOnInit(): void {
-    if(!this.sc.isAdmin()){
-this.router.navigate(['/unauth']);
-    }
+   
   }
 
 }

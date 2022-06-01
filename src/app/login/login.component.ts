@@ -19,9 +19,7 @@ status:'success'|'fail'='success';
    }
 
   ngOnInit(): void {
-      if(this.sc.getToken()){
-        this.router.navigate(['/display']);
-      }
+    
   }
   profileForm = this.fb.group({
     UserName: ['',[Validators.email,Validators.required,Validators.minLength(4)]],   //Validators.minLength(4)

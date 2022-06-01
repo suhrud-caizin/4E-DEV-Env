@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 import { TokenStorageService } from '../token-storage.service';
 
 @Component({
@@ -9,12 +10,10 @@ import { TokenStorageService } from '../token-storage.service';
 })
 export class DisplayComponent implements OnInit {
 
-  constructor(private sc:TokenStorageService,private router:Router) { }
+  constructor(private sc:TokenStorageService,private router:Router,private as:AuthService) { }
 
   ngOnInit(): void {
-    if(!this.sc.getToken()){
-      this.router.navigate(['/']);
-    }
+ 
 }
 
 }

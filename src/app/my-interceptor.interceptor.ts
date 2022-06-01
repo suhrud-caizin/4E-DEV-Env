@@ -11,7 +11,7 @@ import { TokenStorageService } from './token-storage.service';
 
 @Injectable()
 export class MyInterceptorInterceptor implements HttpInterceptor {
- TOKEN_HEADER_KEY=''
+ TOKEN_HEADER_KEY='Authorization'
   constructor(private sc:TokenStorageService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
@@ -21,6 +21,7 @@ export class MyInterceptorInterceptor implements HttpInterceptor {
     if(token){
 
       newrequest= request.clone({headers:request.headers.set(this.TOKEN_HEADER_KEY, 'Bearer ' + token) })
+      console.log(newrequest)
     }
     return next.handle(newrequest);
   }

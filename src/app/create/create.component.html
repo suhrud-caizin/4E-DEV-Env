@@ -1,2 +1,153 @@
 <app-nav-bar></app-nav-bar>
-<p>create works!</p>
+
+
+<div
+class="alert alert-primary"
+role="alert"
+*ngIf="msg"
+>
+{{msg}}
+</div>
+
+<div class="container">
+    <div class=" text-center mt-5 ">
+
+        <h1 >Create KPI</h1>
+            
+        
+    </div>
+
+    <!-- <form  > -->
+
+<div class="row ">
+  <div class="col-lg-7 mx-auto">
+    <div class="card mt-2 mx-auto p-4 bg-light">
+        <div class="card-body bg-light">
+   
+        <div class = "container">
+                         <form id="contact-form" role="form" [formGroup]="kpiForm" (ngSubmit)="onSubmit()">
+
+        
+
+        <div class="controls">
+
+            <div class="row">
+                <div >
+                    <div class="form-group">
+                        <label for="form_name">KPI Name*</label>
+                        <input id="form_name" type="text" name="name" class="form-control" placeholder="Please enter your KPI name" formControlName="title"  data-error="Firstname is required.">
+                        
+                    </div>
+                </div>
+                
+            </div>
+            
+            
+            
+            <div class="row">
+                <!-- <div class="form-group"> -->
+                    
+                    <label for="cars">Choose a Dept:</label>
+                    
+                    <select onchange="" name="cars" id="cars" formControlName="departmentId">
+                        <option [value]='-1'>select Dept</option>
+                        <option [value]="d.id" *ngFor="let d of dept" onchange="">{{d.name}}</option>
+                        
+                    </select>
+                    <!-- </div> -->
+                </div>
+                
+                <div class="row">
+                    <!-- <div class="form-group"> -->
+     
+                        <label for="cars">Data Capture Frequency:</label>
+                        
+                        <select name="cars" id="cars" formControlName="dataCaptureFrequency">
+                            <option [value]=''>select Freq</option>
+                            <option [value]="f._id" *ngFor="let f of capfreq">{{f.value}}</option>
+                            
+                         </select>
+                     <!-- </div> -->
+                </div>
+                
+        <div class="row">
+            <!-- <div class="form-group"> -->
+
+                <label for="cars">Choose a Review Frequency:</label>
+                
+                <select name="cars" id="cars" formControlName="reviewFrequency">
+                    <option [value]=''>select Freq</option>
+                    <option [value]="r._id" *ngFor="let r of reviewFreq">{{r.value}}</option>
+                    
+                 </select>
+             <!-- </div> -->
+        </div>
+
+
+        <div class="row">
+            <!-- <div class="form-group"> -->
+
+                <label for="cars">Choose a Perspective</label>
+                
+                <select name="cars" id="cars" formControlName="perspective">
+                    <option [value]=''>select Freq</option>
+                    <option [value]="p._id" *ngFor="let p of perspectives">{{p.perspective}}</option>
+                    
+                 </select>
+             <!-- </div> -->
+        </div>
+
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="form_message">Descreption *</label>
+                        <textarea id="form_message" name="message" class="form-control" placeholder="Descreption" rows="4" required="required" data-error="Please, leave us a message." formControlName="goalDescription"></textarea
+                            >
+                        </div>
+
+                    </div>
+
+
+                
+      
+            </div> 
+            <div class="row">
+                <div >
+                    <div class="form-group">
+                        <label for="form_name">remark</label>
+                        <input id="form_name" type="text" name="name" class="form-control" placeholder="Please enter your remarks" formControlName="remark"  data-error="Firstname is required.">
+                        
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="row mt-2">
+                <div class="col-md-4">
+                    
+                    <input type="submit" class="btn btn-success btn-send  pt-2 btn-block
+                        " value="Create" type="submit" [disabled]="!kpiForm.valid" >
+                
+            </div>
+            </div>
+          
+
+
+    </div>
+     </form>
+    </div>
+        </div>
+
+
+</div>
+    <!-- /.8 -->
+
+</div>
+<!-- /.row-->
+
+</div>
+</div>
+
+

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +17,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { AdminComponent } from './admin/admin.component';
 import { UnauthaccessComponent } from './unauthaccess/unauthaccess.component';
 import { DetailsComponent } from './details/details.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { DetailsComponent } from './details/details.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, ReactiveFormsModule,HttpClientModule,NgChartsModule
+    AppRoutingModule, ReactiveFormsModule,HttpClientModule,NgChartsModule,NgSelectModule,FormsModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

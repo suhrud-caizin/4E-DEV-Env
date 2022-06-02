@@ -1,6 +1,4 @@
-<app-nav-bar></app-nav-bar>
 
-<p>display works!</p>
 
 
 
@@ -10,8 +8,12 @@
     <!-- <hr class="my-4"> -->
     <p>{{k.departmentName}}</p>
     <p class="lead">
-      <a class="btn btn-primary btn-lg"   [routerLink]="['/details', k._id]" role="button">Details</a>
-  
+      
+      
+      <!-- {{k|json}} -->
     </p>
     <hr>
+    <button class="btn btn-primary" (click)="getDetails(k)">
+      details
+    </button>
   </div>

@@ -12,7 +12,7 @@ import { OrgtreeComponent } from './orgtree/orgtree.component';
 import { UnauthaccessComponent } from './unauthaccess/unauthaccess.component';
 
 const routes: Routes = [
-  { path: 'display', component: DisplayComponent,canActivate: [AuthGuard] },
+  // { path: 'display', component: DisplayComponent,canActivate: [AuthGuard] },
   { path: 'create', component: CreateComponent,canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent  },
   { path: 'login', component: LoginComponent  },

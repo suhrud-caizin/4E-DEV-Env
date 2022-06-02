@@ -1,2 +1,12 @@
 <app-nav-bar></app-nav-bar>
 <p>home works!</p>
+<div class="row">
+
+    <div class="col-sm-5">
+        
+        <app-display (kpi)="setKPI($event)" ></app-display>
+    </div>
+    <div class="col-sm-5">
+        <app-details [kpi]="kpi" *ngIf="kpi"></app-details>
+    </div>
+</div>

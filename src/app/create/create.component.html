@@ -1,3 +1,4 @@
+
 <app-nav-bar></app-nav-bar>
 
 
@@ -99,7 +100,7 @@ role="alert"
 
 
 
-
+        <!-- //(change)="fyChangeHandler()" -->
 
 
         <div class="row">
@@ -107,13 +108,83 @@ role="alert"
 
                 <label for="cars">select FY</label>
                 
-                <select name="cars" id="cars" formControlName="financialYearEnd" >
+                <select name="cars" id="cars" formControlName="financialYearEnd"  (change)="fyChangeHandler()" > 
                     <option [value]=''>select FY</option>
-                    <option [value]="f.endUnix" *ngFor="let f of FY">FY-{{f.startUnix|date: 'yyyy'}}-{{f.endUnix|date: 'yyyy'}}</option>
+                    <option [value]="f.endUnix"  *ngFor="let f of getFilteredFY()" >FY-{{f.startUnix|date: 'yyyy'}}-{{f.endUnix|date: 'yyyy'}}</option>
                     
                  </select>
              <!-- </div> -->
         </div>
+        
+
+
+        <div >
+            <h2>select month</h2>
+            <!-- <button type="button" (click)="addData()" >+ Add another data</button> -->
+           
+            <!-- <button class="btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">Basic dropdown</button>
+   -->
+    <!-- <div class="dropdown-menu" >
+      <a class="dropdown-item" *ngFor="let m of months; let i=index">
+       
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="{{i}}" >
+          <label class="custom-control-label" for="checkbox1">{{m}}</label>
+        </div>
+      </a>
+      
+        </div> -->
+
+        <!-- Using Items Input -->
+<ng-select [items]="months" bindLabel="name" bindValue="id" placeholder="Select Month"appendTo="body"
+[multiple]="true" [(ngModel)]="selected" [ngModelOptions]="{standalone: true}"
+(add)="addData($event)" 
+>
+</ng-select>
+<!-- (remove)="removeData($event)" -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div formArrayName="captureData" *ngFor="let data of captureData.controls; let i=index">
+              <!-- The repeated alias template -->
+                <div class="card mt-5" formGroupName="{{i}}">
+                    <h5>{{months[selected[i]-1].name}}</h5>
+
+                    target:
+                    <input id="{{'target'+ i }}" type="number"  formControlName='target' class="form-control mt-2">
+                    lower:
+                    <input id="{{'lower'+ i }}" type="number"  formControlName='lower' class="form-control mt-2">
+                    Upper:
+                    <input id="{{'upper'+ i }}" type="number"  formControlName='upper' class="form-control mt-2">
+                    <button class="danger" (click)="removeData(i)">Remove</button>
+                </div>
+            </div>
+
+
+          </div>
+
+
+
+
+
+
+
+
+
        
 
 

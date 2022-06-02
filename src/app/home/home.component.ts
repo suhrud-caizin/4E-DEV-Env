@@ -8,8 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   constructor() { }
-
+  kpi:any;
   ngOnInit(): void {
+  }
+  setKPI($event:any){
+    this.kpi=$event
+    console.log($event);
   }
 
 }

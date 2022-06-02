@@ -42,5 +42,8 @@ export class KpiService {
   getFY():Observable<any>{
     return this.http.get('https://dev-api.tqmi.io/setting-management/api/financial-years-list');
   }
+  getMonthRAnge():Observable<any>{
+    return this.http.get('https://dev-api.tqmi.io/setting-management/api/month-range')
+  }
   
 }

@@ -36,7 +36,8 @@ status:'success'|'fail'='success';
         console.log(data);
         this.sc.saveToken(data.response);
       this.sc.saveUser(data)
-      this.router.navigate(['/display']);
+      this.router.navigate(['/home']);
+      console.log('after nav')
       },
       (err)=>{
         this.status='fail';

@@ -14,7 +14,7 @@ import { UnauthaccessComponent } from './unauthaccess/unauthaccess.component';
 const routes: Routes = [
   // { path: 'display', component: DisplayComponent,canActivate: [AuthGuard] },
   { path: 'create', component: CreateComponent,canActivate: [AuthGuard] },
-  { path: 'home', component: HomeComponent  },
+  { path: 'home', component: HomeComponent   },
   { path: 'login', component: LoginComponent  },
   {path:'orgtree',component:OrgtreeComponent,canActivate: [AuthGuard] },
   {path:'admin',component:AdminComponent,canActivate:[AuthGuard,AdminGuard]},
@@ -22,6 +22,7 @@ const routes: Routes = [
   {path:'details/:id',component:DetailsComponent,canActivate: [AuthGuard]},
   
   { path: '',component:LoginComponent },
+  { path: '**',component:LoginComponent },
  
 ];
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { TokenStorageService } from '../token-storage.service';
 
 @Component({
@@ -19,6 +20,7 @@ export class NavBarComponent implements OnInit {
   }
   getUserName(){
     return this.sc.getUserName();
+    // new Observable().;
   }
 
 }

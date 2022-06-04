@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  login:'https://dev-api.tqmi.io',
+  getAll:'https://reqres.in',
+  kpi:'https://dev-api.tqmi.io'
+
 };
 
 /*

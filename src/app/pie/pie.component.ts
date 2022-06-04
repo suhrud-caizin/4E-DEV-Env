@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ChartType } from 'chart.js';
 import * as ng2Charts from 'ng2-charts';
+import { KpiService } from '../kpi.service';
  
 @Component({
   selector: 'app-pie',
@@ -8,6 +9,7 @@ import * as ng2Charts from 'ng2-charts';
   styleUrls: ['./pie.component.css']
 })
 export class PieComponent implements OnInit {
+ 
  /* @ViewChild('canvas')
   canvas!: ElementRef;
    angles = [Math.PI,0.5*Math.PI,0.5*Math.PI];
@@ -81,13 +83,17 @@ pieChartData:any = [
       data: [50,40,50,60,90,90]        //Math.PI/3,Math.PI/3,Math.PI/3,Math.PI/3,Math.PI/3,Math.PI/3
   }
 ];
+/**
+ *
+ */
+constructor(private ks:KpiService) {}
 
 ngOnInit() {
+
+ 
 }
 /**
  *
  */
-constructor() {
- 
-}
+
 }

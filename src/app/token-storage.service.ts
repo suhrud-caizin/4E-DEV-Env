@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Injectable({
   providedIn: 'root'
@@ -6,9 +7,24 @@ import { Injectable } from '@angular/core';
 export class TokenStorageService {
   TOKEN_KEY = 'auth-token';
   USER_KEY = 'auth-user';
+   helper = new JwtHelperService();
+   rememberMe:boolean=true;
+   
   constructor() { }
+      
+  isRememberOn(){
+    console.log(this.rememberMe)
+    if(this.rememberMe)
+    return localStorage;
+    else 
+    return sessionStorage;
+
+  }
+  
   getToken(): string | null {
-    let tmp = localStorage.getItem(this.TOKEN_KEY);
+    let tmp = this.isRememberOn().getItem(this.TOKEN_KEY);
+    console.log(this.isRememberOn())
+    console.log(localStorage)
     if (tmp&& !this.isTokenExpired(tmp)) {         //&& !this.isTokenExpired(tmp)
       // console.log('is expired:'+this.isTokenExpired(tmp));
       return tmp
@@ -16,27 +32,55 @@ export class TokenStorageService {
     return null;
   }
   saveToken(token: string) {
-    localStorage.setItem(this.TOKEN_KEY, token);
+    this.isRememberOn().setItem(this.TOKEN_KEY, token);
+    console.log(this.rememberMe);
 
   }
   getUser() {
-    return localStorage.getItem(this.USER_KEY)
+    return this.isRememberOn().getItem(this.USER_KEY)
   }
   saveUser(user: string) {
-    localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+    this.isRememberOn().setItem(this.USER_KEY, JSON.stringify(user));
   }
   logout() {
-    localStorage.clear();
+
+    this.isRememberOn().clear();
   }
   isTokenExpired(token: string) {
-    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+    // this.helper.getTokenExpirationDate(token);
+    console.log('toke exp cheked')
+    console.log(this.helper.isTokenExpired(token))
+    return this.helper.isTokenExpired(token);
+    // const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
     
-    return (Math.floor((new Date).getTime() / 1000)) >= expiry;
+    // return (Math.floor((new Date).getTime() / 1000)) >= expiry;
   }
   isAdmin(){
-    return JSON.parse(atob(localStorage.getItem(this.TOKEN_KEY)!.split('.')[1])).isAdmin
+    let token=this.isRememberOn().getItem(this.TOKEN_KEY);
+    if(token){
+
+      console.log(this.helper.decodeToken(token))
+      return this.helper.decodeToken(token).isAdmin;
+    }
+    return false;
   }
   getUserName(){
-    return JSON.parse(atob(localStorage.getItem(this.TOKEN_KEY)!.split('.')[1])).firstname
+    let token=this.isRememberOn().getItem(this.TOKEN_KEY);
+    if(token)
+    return this.helper.decodeToken(token).firstName
+    return 
+  }
+  getEmployeeId(){
+    
+    let token=this.isRememberOn().getItem(this.TOKEN_KEY);
+    if(token)
+    return this.helper.decodeToken(token).employeeId
+    return 
+  }
+  getSupervisorId(){
+    let token=this.isRememberOn().getItem(this.TOKEN_KEY);
+    if(token)
+    return this.helper.decodeToken(token).supervisorId
+    return 
   }
 }

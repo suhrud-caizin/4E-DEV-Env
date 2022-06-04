@@ -19,6 +19,12 @@ status:'success'|'fail'='success';
    }
 
   ngOnInit(): void {
+    console.log(' login init')
+    if(this.sc.getToken()){
+      console.log('login init2')
+      this.router.navigate(['/home']);
+    }
+    console.log('login init23')
     
   }
   profileForm = this.fb.group({
@@ -47,6 +53,12 @@ status:'success'|'fail'='success';
    
 
     
+  }
+  rememberMe($event:any){
+  
+  
+    this.sc.rememberMe=$event.target.checked;
+ 
   }
   get UserName() { return this.profileForm.get('UserName'); }
 

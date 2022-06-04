@@ -17,10 +17,12 @@ export class CreateComponent implements OnInit {
   constructor(private sc: TokenStorageService, private router: Router, private ks: KpiService, private fb: FormBuilder) { }
   capfreq: any[] = [];
   reviewFreq: any[] = [];
+  freviewFreq: any[] = [];
   dept: any[] = [];
   perspectives: any[] = [];
   type: any[] = [];
   category: any[] = [];
+  piedata:any[]=[];
   // months:any[]=['JAN',"FEB","MAR","APR"]
   state: any[] = []
   months: any[] = [
@@ -39,13 +41,15 @@ export class CreateComponent implements OnInit {
 
     this.ks.getCaptureFreq().subscribe(({ response }) => this.capfreq = response);   //this.capfreq=data
     this.ks.getDepts().subscribe(({ response }) => this.dept = response);
-    this.ks.getReviewFreq().subscribe(({ response }) => this.reviewFreq = response);
+    this.ks.getReviewFreq().subscribe(({ response }) => {this.reviewFreq = response;this.reviewFreq = response});
     this.ks.getPerspectives().subscribe(({ response }) => this.perspectives = response);
     this.ks.getTypes().subscribe(({ response }) => this.type = response);
     this.ks.getCategory().subscribe(({ response }) => this.category = response);
-    this.ks.getFY().subscribe(({ response }) => this.FY = response);
+    this.ks.getFY().subscribe(({ response }) =>{ this.FY = response;console.log(response)});
     this.ks.getMonthRAnge().subscribe(({ response }) => {console.log(this.monthlyRange);this.monthlyRange = response});
-   
+   this.ks.getPieData().subscribe({
+     next:(data)=>console.log(data)
+   })
 
   }
 
@@ -77,7 +81,7 @@ export class CreateComponent implements OnInit {
     owners: {
       individuals: [
         {
-          employeeId: "suhrud.mhatre",
+          employeeId: this.sc.getEmployeeId(),
           isPrimary: true
         }
       ]
@@ -86,8 +90,8 @@ export class CreateComponent implements OnInit {
       individuals: [],
       groups: []
     },
-    financialYearStart: null,
-    financialYearEnd: null,
+    financialYearStart: '',
+    financialYearEnd: '',
     dataAggregationFrequency: "62833d7b412ac9eebe3a3c17",
     dataAggregationMethod: "SUM",
 
@@ -95,16 +99,22 @@ export class CreateComponent implements OnInit {
   });
   onSubmit() {
     console.log(this.kpiForm.value)
-    this.ks.createKPI(JSON.stringify(this.kpiForm.value)).subscribe(() => this.msg = 'KPI created Successfully!', () => this.msg = 'Ooops! some error!')
-    setTimeout(() => {
-      this.msg = ''
-    }, 2000);
+    this.ks.createKPI(JSON.stringify(this.kpiForm.value)).subscribe(
+      {
+    next: () =>{this.router.navigate(['/home'])},
+     error:  () =>{ this.msg = 'Ooops! some error!'}
+      
+    })
+
+   
   }
   changeHandler($event: any) {
     console.log($event.target.value);
-    let tmp = this.capfreq.find(elem => elem._id == $event.target.value);
-    console.log(tmp.order)
-    this.reviewFreq = this.reviewFreq.filter(elem => elem.order > tmp.order)
+    let tmp = this.capfreq.find(elem => elem._id == $event.target.value).order;
+    console.log(tmp)
+    if(tmp>=5)
+    tmp--;
+    this.freviewFreq = this.reviewFreq.filter(elem => elem.order > tmp)
     console.log(this.reviewFreq)
   }
   addData($event: any) {
@@ -139,12 +149,13 @@ export class CreateComponent implements OnInit {
     })
 
   }
-  fyChangeHandler() {
+  fyChangeHandler($event:any) {
     // console.log(new Date().getTime())
     // console.log('********')
-    // console.log(startUnix)
+    console.log($event.target.value)
     
-    this.kpiForm.controls['financialYearStart'].setValue(new Date().getTime().toString());
+    
+    this.kpiForm.controls['financialYearStart'].setValue(this.FY.find(elem=>elem.endUnix==$event.target.value).startUnix);
     console.log(this.kpiForm.value)
   }
   getFilteredFY() {

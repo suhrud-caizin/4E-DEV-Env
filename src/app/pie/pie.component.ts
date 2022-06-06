@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { ChartType } from 'chart.js';
 import * as ng2Charts from 'ng2-charts';
 import { KpiService } from '../kpi.service';
@@ -8,7 +8,7 @@ import { KpiService } from '../kpi.service';
   templateUrl: './pie.component.html',
   styleUrls: ['./pie.component.css']
 })
-export class PieComponent implements OnInit {
+export class PieComponent implements OnInit,OnChanges {
  
  /* @ViewChild('canvas')
   canvas!: ElementRef;
@@ -59,12 +59,13 @@ draw()
     }
   }
 */
-
+@Input()
+node:any=[];
 pieChartOptions = {
   responsive: true
 }
 
-pieChartLabels =  ['JAN', 'FEB','MAR','APR','MAY','JUN'];
+pieChartLabels:string[] =  [];
 
 // CHART COLOR.
 pieChartColor:any = [
@@ -80,8 +81,8 @@ pieChartColor:any = [
 
 pieChartData:any = [
   { 
-      data: [50,40,50,60,90,90]        //Math.PI/3,Math.PI/3,Math.PI/3,Math.PI/3,Math.PI/3,Math.PI/3
-  }
+      data: []        
+     }
 ];
 /**
  *
@@ -90,8 +91,18 @@ constructor(private ks:KpiService) {}
 
 ngOnInit() {
 
- 
+  let result = (({ notDefinedKPI, notMonitored, achieved, onTrack,notOnTrack,kpiMonitored  }) => ({ notDefinedKPI,notMonitored, achieved, onTrack,notOnTrack,kpiMonitored }))(this.node);
+  console.log(result)
+  this.pieChartLabels= Object.keys(result)
+  this.pieChartData[0].data=Object.values(result);
+  // this.pieChartData[0].data[0]=5
+  console.log(this.pieChartLabels)
+  console.log(this.pieChartData)
 }
+ngOnChanges(){
+
+}
+
 /**
  *
  */

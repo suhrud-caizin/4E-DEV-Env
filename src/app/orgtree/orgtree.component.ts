@@ -2,6 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { KpiService } from '../kpi.service';
 import { TokenStorageService } from '../token-storage.service';
+import {NestedTreeControl} from '@angular/cdk/tree';
+
+import {MatTreeNestedDataSource} from '@angular/material/tree';
+
+
+interface FoodNode {
+  primaryUserId: string;
+  children?: FoodNode[];
+}
 
 @Component({
   selector: 'app-orgtree',
@@ -9,23 +18,35 @@ import { TokenStorageService } from '../token-storage.service';
   styleUrls: ['./orgtree.component.css']
 })
 export class OrgtreeComponent implements OnInit {
+  treeControl = new NestedTreeControl<FoodNode>(node => node.children);
+  dataSource = new MatTreeNestedDataSource<FoodNode>();
+  constructor(private sc:TokenStorageService,private router:Router,private ks:KpiService) { 
 
-  constructor(private sc:TokenStorageService,private router:Router,private ks:KpiService) { }
+  }
+  hasChild = (_: number, node: FoodNode) => !!node.children && node.children.length >= 0;
 pieData:any[]=[]
+TREE_DATA:any[]=[]
 
 ngOnInit(): void {
 
   this.ks.getPieData().subscribe(({response})=>{
+    // response[5].userHierarchy='ameya.gholap/vikas.raut';
 
-    this.pieData=response;
+    // response[4].userHierarchy='ameya.gholap'
 
-  })
-
+    // response[4].primaryUserId='ameya.gholap'
+      this.TREE_DATA=  this.getTree(response);
+      this.dataSource.data = this.TREE_DATA;
+      console.log(this.TREE_DATA)
+      
+    })
+    console.log(this.dataSource.data)
+    console.log('******')
 }
 
-meth(){
-  console.log(this.getTree(this.pieData))
-}
+// meth(){
+//   console.log(this.getTree(this.pieData))
+// }
 
 
 

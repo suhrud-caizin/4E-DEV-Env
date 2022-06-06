@@ -18,7 +18,9 @@ import { AdminComponent } from './admin/admin.component';
 import { UnauthaccessComponent } from './unauthaccess/unauthaccess.component';
 import { DetailsComponent } from './details/details.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTree, MatTreeModule } from '@angular/material/tree';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, ReactiveFormsModule,HttpClientModule,NgChartsModule,NgSelectModule,FormsModule
+    AppRoutingModule, ReactiveFormsModule,HttpClientModule,NgChartsModule,NgSelectModule,FormsModule, 
+    BrowserAnimationsModule,MatTreeModule,MatIconModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
